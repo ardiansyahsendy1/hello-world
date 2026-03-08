@@ -1,8 +1,15 @@
 const actionButton = document.getElementById('action-button');
 const message = document.getElementById('message');
+const projectsSection = document.getElementById('projects');
 
-if (actionButton && message) {
+if (actionButton) {
   actionButton.addEventListener('click', () => {
-    message.textContent = 'JavaScript is connected and working.';
+    if (message) {
+      message.textContent = 'Exploring featured projects below. This portfolio is ready for your personal details.';
+    }
+
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   });
 }
