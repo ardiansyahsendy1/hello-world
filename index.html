@@ -3,18 +3,108 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello World App</title>
+    <title>Portfolio</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <main class="page">
-      <section class="card">
-        <h1>Hello World App</h1>
-        <p class="description">
-          A minimal static web app starter with HTML, CSS, and JavaScript connected.
-        </p>
-        <button id="action-button" type="button">Test JavaScript</button>
-        <p id="message">Click the button to verify the app is working.</p>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="#home">Your Name</a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="home" class="page">
+      <section class="hero section">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Frontend Developer</p>
+            <h1>Building simple, thoughtful web experiences.</h1>
+            <p class="intro">
+              Hi, I am Your Name, a placeholder creative developer profile focused on clean interfaces,
+              accessible layouts, and lightweight front-end projects.
+            </p>
+            <div class="hero-actions">
+              <button id="action-button" type="button">View Projects</button>
+              <a class="secondary-link" href="#contact">Get in Touch</a>
+            </div>
+            <p id="message">Click the button to jump to featured work.</p>
+          </div>
+
+          <aside class="highlight-card" aria-label="Profile summary">
+            <h2>Quick Snapshot</h2>
+            <ul>
+              <li>Focused on responsive websites</li>
+              <li>Enjoys design systems and UI polish</li>
+              <li>Available for freelance and collaborations</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="about" class="section">
+        <div class="container section-card">
+          <p class="section-label">About</p>
+          <h2>Designing with clarity and usability in mind.</h2>
+          <p>
+            This sample portfolio highlights a simple one-page structure that introduces skills,
+            selected work, and a clear way to connect. Replace this placeholder copy with your real
+            background, tools, and experience.
+          </p>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <p class="section-label">Projects</p>
+          <h2>Selected Work</h2>
+          <div class="projects-grid">
+            <article class="project-card">
+              <h3>Project One</h3>
+              <p>
+                A sample landing page project focused on a fast load time, clear messaging, and a
+                polished responsive layout.
+              </p>
+              <span>HTML, CSS, JavaScript</span>
+            </article>
+            <article class="project-card">
+              <h3>Project Two</h3>
+              <p>
+                A lightweight dashboard concept with reusable components, clean spacing, and easy
+                navigation patterns.
+              </p>
+              <span>UI Design, Frontend</span>
+            </article>
+            <article class="project-card">
+              <h3>Project Three</h3>
+              <p>
+                A portfolio refresh concept that prioritizes readability, accessibility, and smooth
+                interactions without heavy frameworks.
+              </p>
+              <span>Responsive Web</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="container section-card contact-card">
+          <p class="section-label">Contact</p>
+          <h2>Let us build something useful.</h2>
+          <p>
+            You can replace these placeholder links with your email, GitHub, LinkedIn, or any other
+            preferred contact channel.
+          </p>
+          <div class="contact-links">
+            <a href="mailto:you@example.com">you@example.com</a>
+            <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
       </section>
     </main>
 
