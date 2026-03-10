@@ -1,338 +1,399 @@
-const workflowTemplates = [
+const workflowTemplate = [
   {
     id: 'objective',
     label: 'Objective',
-    description: 'Captured the research goal, scope, and output preferences.',
+    description: 'Captured the user goal, scope, and output preferences.'
   },
   {
     id: 'plan',
     label: 'Research plan',
-    description: 'Converted the objective into focused questions and a lightweight methodology.',
+    description: 'Converted the objective into research questions and a working approach.'
   },
   {
     id: 'sources',
     label: 'Source collection',
-    description: 'Assembled a small evidence base with relevance and reliability notes.',
+    description: 'Selected relevant reports, benchmarks, and qualitative references.'
   },
   {
     id: 'evidence',
     label: 'Evidence extraction',
-    description: 'Linked claims to source-backed notes and signal strength.',
+    description: 'Pulled claims, notes, and supporting excerpts from the source set.'
   },
   {
     id: 'synthesis',
     label: 'Synthesis',
-    description: 'Consolidated findings into concise insights and decision-ready framing.',
+    description: 'Turned evidence into practical findings and tradeoff analysis.'
   },
   {
-    id: 'report',
+    id: 'brief',
     label: 'Final brief',
-    description: 'Compiled recommendations, risks, open questions, and confidence level.',
-  },
+    description: 'Compiled the executive summary, recommendations, risks, and next steps.'
+  }
 ];
 
-const scenarios = [
+const scenarioCatalog = [
   {
-    id: 'launch-channels',
-    matchTerms: ['launch', 'channel', 'saas', 'operations'],
-    title: 'Launch Channels for Niche SaaS',
-    domain: 'Go-to-market',
-    plan: {
-      researchQuestion: 'Which early channels are most credible for a niche SaaS targeting small operations teams?',
-      subQuestions: [
-        'Which channels provide fast feedback loops from ICP buyers?',
-        'Which channels compound trust with the lowest setup overhead?',
-        'Where can the product demonstrate workflow expertise rather than broad brand awareness?',
-      ],
-      methodology: [
-        'Compare audience intent, cost to test, and feedback speed across candidate channels.',
-        'Prefer channels that allow educational positioning and repeated exposure.',
-        'Weight recommendations toward channels that a small team can run consistently.',
-      ],
-    },
+    id: 'ai-notes',
+    matcher: /note|meeting|transcript|remote team|pilot/i,
+    title: 'AI note-taking tools for small teams',
+    domain: 'Productivity software',
+    summary: 'For a fast pilot rollout, prioritize tools with the shortest setup time, strong meeting summaries, and minimal change management. The scenario indicates that lightweight onboarding and clear collaboration features matter more than broad enterprise functionality during an early team test.',
+    plan: [
+      'Define the pilot outcome as faster meeting follow-up and clearer action ownership.',
+      'Compare onboarding speed, summary quality, integrations, and pricing clarity.',
+      'Use a short internal pilot with one cross-functional team before wider rollout.'
+    ],
+    recommendations: [
+      'Shortlist products with setup under one hour and strong calendar integration.',
+      'Run a two-week pilot with one team lead and one operations owner.',
+      'Measure summary accuracy, adoption, and post-meeting follow-through before choosing a winner.'
+    ],
+    questions: [
+      'Does the preferred tool support the meeting platforms already used by the team?',
+      'How much editing is required before summaries can be shared externally?'
+    ],
+    risks: [
+      'Teams may resist adoption if summaries need heavy manual cleanup.',
+      'Transcript retention policies may create legal or compliance concerns.'
+    ],
+    notes: [
+      'Onboarding speed consistently shaped trial completion in the scenario sources.',
+      'Feature breadth mattered less than summary usefulness during early evaluation.'
+    ],
+    confidence: 'high',
     findings: [
       {
-        title: 'Founder-led content and outbound conversations are the strongest first wedge.',
-        summary: 'Direct problem-oriented outreach and educational content create faster learning cycles than broad paid awareness for a narrow ICP.',
-        confidence: 'high',
+        title: 'Fast onboarding is the strongest early adoption driver',
+        summary: 'Teams are more likely to complete a pilot when setup is simple and the first summary feels immediately usable.',
+        confidence: 'high'
       },
       {
-        title: 'Community participation works best when framed as problem solving, not promotion.',
-        summary: 'Niche communities can generate qualified interest, but trust depends on useful answers and examples instead of campaign-style posting.',
-        confidence: 'medium',
+        title: 'Action-item clarity matters more than transcript length',
+        summary: 'Users care most about concise summaries, clear owners, and quick follow-up workflows.',
+        confidence: 'high'
       },
       {
-        title: 'Partnerships outperform scale channels when category education is still immature.',
-        summary: 'Integration, consultant, or workflow-adjacent partners can compress trust building more effectively than broad social acquisition.',
-        confidence: 'medium',
-      },
+        title: 'Enterprise breadth is not essential in the first pilot',
+        summary: 'For a small-team test, ease of rollout outranks advanced admin controls and deeper customization.',
+        confidence: 'medium'
+      }
     ],
     sources: [
       {
-        title: 'Founders Interview Synthesis',
-        type: 'interview roundup',
-        reliability: 'medium',
-        relevance: 'Useful for early channel testing patterns and feedback velocity.',
-        note: 'Highlights how early teams learned fastest through direct conversations.',
+        title: 'SMB Collaboration Adoption Benchmark',
+        type: 'benchmark report',
+        reliability: 'high',
+        relevance: 'Explains why low-friction onboarding improves software trial completion.',
+        note: 'Used to evaluate adoption risk during the pilot phase.'
       },
       {
-        title: 'B2B SaaS Demand Capture Notes',
+        title: 'Internal Pilot Evaluation Template',
+        type: 'operating note',
+        reliability: 'medium',
+        relevance: 'Defines success metrics for meeting summary workflows and owner tracking.',
+        note: 'Used to frame evaluation criteria for the final recommendation.'
+      },
+      {
+        title: 'Meeting Productivity Buyer Signals',
         type: 'market note',
         reliability: 'medium',
-        relevance: 'Frames the difference between active demand capture and long-term demand creation.',
-        note: 'Supports sequencing of narrow acquisition bets before larger awareness efforts.',
-      },
-      {
-        title: 'Operator Community Observation Log',
-        type: 'community notes',
-        reliability: 'low',
-        relevance: 'Shows where operations leaders ask tactical workflow questions.',
-        note: 'Useful directional signal, but findings should be validated with live interviews.',
-      },
+        relevance: 'Highlights what small teams prioritize when adopting note automation tools.',
+        note: 'Used to rank feature importance for the MVP comparison.'
+      }
     ],
     evidence: [
       {
-        claim: 'Teams in narrow B2B categories learn more from direct outreach than broad awareness campaigns in the first stage.',
-        sourceTitle: 'Founders Interview Synthesis',
+        claim: 'Low setup effort correlates with stronger pilot completion rates.',
+        source: 'SMB Collaboration Adoption Benchmark',
         strength: 'high',
-        excerpt: 'Early teams improved positioning fastest when founders ran repeated problem discovery conversations.'
+        excerpt: 'Short setup windows reduce evaluation friction and increase the chance that teams finish the first trial cycle.'
       },
       {
-        claim: 'Community engagement only compounds when the brand consistently solves real workflow questions.',
-        sourceTitle: 'Operator Community Observation Log',
-        strength: 'medium',
-        excerpt: 'Promotional posting underperformed compared with concrete how-to responses and teardown-style examples.'
+        claim: 'Teams value useful summaries more than long-form transcripts.',
+        source: 'Meeting Productivity Buyer Signals',
+        strength: 'high',
+        excerpt: 'Decision makers prioritized summary clarity, action extraction, and shareability over raw transcript depth.'
       },
       {
-        claim: 'Partnership channels matter more when buyers need trust transfer before trying an unfamiliar tool.',
-        sourceTitle: 'B2B SaaS Demand Capture Notes',
+        claim: 'Simple operating metrics make pilot decisions faster.',
+        source: 'Internal Pilot Evaluation Template',
         strength: 'medium',
-        excerpt: 'Audience trust was easier to borrow from adjacent service providers than to build from scratch via generic ads.'
-      },
-    ],
-    report: {
-      executiveSummary: 'For a niche SaaS targeting small operations teams, the strongest MVP launch path is a focused combination of founder-led outreach, educational content, and a small number of trust-amplifying partnerships. Broad awareness channels can wait until messaging and conversion patterns are sharper.',
-      recommendations: [
-        'Run a short founder-led outreach sprint tied to one specific workflow pain point.',
-        'Publish two or three educational assets that show the product solving real operations bottlenecks.',
-        'Test one partnership motion with consultants, agencies, or adjacent workflow tools already trusted by the ICP.',
-      ],
-      openQuestions: [
-        'Which sub-segment of operations teams converts fastest after a live demo?',
-        'What proof asset most reduces concern about workflow disruption during adoption?',
-      ],
-      risks: [
-        'Founder-led channels may not scale unless messaging is documented and repeatable.',
-        'Community channels can consume time without producing measurable pipeline if participation is inconsistent.',
-      ],
-      sourceNotes: [
-        'Source mix is directional and should be validated with direct customer discovery.',
-        'Community observations are useful for language patterns but weaker for quantitative forecasting.',
-      ],
-      confidence: 'medium',
-    },
+        excerpt: 'When teams track summary accuracy, owner clarity, and turnaround time, product selection becomes easier.'
+      }
+    ]
   },
   {
-    id: 'ai-note-taking',
-    matchTerms: ['note', 'meeting', 'knowledge', 'team', 'ai'],
-    title: 'AI Note-Taking for Small Teams',
-    domain: 'Product evaluation',
-    plan: {
-      researchQuestion: 'What matters most when small teams evaluate AI note-taking tools?',
-      subQuestions: [
-        'Which adoption factors matter before advanced automation features?',
-        'How important are search, sharing, and post-meeting workflows?',
-        'Which objections are most likely to slow purchase decisions?',
-      ],
-      methodology: [
-        'Compare onboarding friction, collaboration value, and trust considerations.',
-        'Separate must-have usability factors from later-stage differentiators.',
-        'Prioritize drivers that affect trial activation within the first week.',
-      ],
-    },
+    id: 'saas-launch',
+    matcher: /launch|go to market|channel|saas|acquisition/i,
+    title: 'Launch channels for a niche SaaS',
+    domain: 'Go-to-market strategy',
+    summary: 'For a niche SaaS launch, the scenario favors focused channels that compound credibility rather than broad paid reach. Founder-led content, targeted communities, and direct outreach appear more efficient than heavy paid campaigns during the first stage.',
+    plan: [
+      'Identify the narrow buyer profile and where these users already gather.',
+      'Compare intent-rich channels against broad awareness channels.',
+      'Recommend a launch sequence that creates feedback loops and proof early.'
+    ],
+    recommendations: [
+      'Start with founder-led educational content around the specific customer pain point.',
+      'Layer in direct outreach to a targeted prospect list after validating messaging.',
+      'Use community participation and case-based content before scaling paid acquisition.'
+    ],
+    questions: [
+      'Which segment has the shortest path from awareness to trial?',
+      'What proof point will best convert early skepticism into demos?'
+    ],
+    risks: [
+      'Paid campaigns may burn budget before the positioning is clear.',
+      'Community-led growth can stall if the product story is too broad.'
+    ],
+    notes: [
+      'High-intent channels outperform broad awareness during the earliest phase.',
+      'Proof and specificity matter more than reach for a niche offer.'
+    ],
+    confidence: 'medium',
     findings: [
       {
-        title: 'Fast onboarding beats feature depth in early evaluation.',
-        summary: 'Small teams judge note-taking tools first by setup friction and clarity of output, not by long-tail automation options.',
-        confidence: 'high',
+        title: 'Focused channels outperform broad paid awareness early',
+        summary: 'Channels with strong problem awareness produce better early feedback and lower acquisition waste.',
+        confidence: 'high'
       },
       {
-        title: 'Shared visibility matters more than individual capture.',
-        summary: 'Teams see more value when notes become searchable, shareable, and tied to action items beyond a single meeting owner.',
-        confidence: 'high',
+        title: 'Specific messaging converts better than category-level positioning',
+        summary: 'The closer the launch message is to a concrete user pain point, the stronger the response.',
+        confidence: 'medium'
       },
       {
-        title: 'Trust and permission concerns remain a purchase blocker.',
-        summary: 'Recording policies, transcript accuracy, and governance questions can slow adoption even when the product demo is compelling.',
-        confidence: 'medium',
-      },
+        title: 'Proof assets should precede scale',
+        summary: 'Case examples and concrete outcomes make later channel expansion more efficient.',
+        confidence: 'medium'
+      }
     ],
     sources: [
       {
-        title: 'Small Team Tool Evaluation Notes',
-        type: 'research memo',
+        title: 'Early Stage SaaS Channel Efficiency Notes',
+        type: 'market note',
         reliability: 'medium',
-        relevance: 'Summarizes evaluation criteria used by budget-conscious teams.',
-        note: 'Useful for activation and collaboration priorities.',
+        relevance: 'Compares feedback quality across paid, community, and outbound channels.',
+        note: 'Used to prioritize learning speed over raw reach.'
       },
       {
-        title: 'Meeting Workflow Review',
-        type: 'workflow analysis',
+        title: 'Founder-Led Distribution Patterns',
+        type: 'strategy memo',
         reliability: 'medium',
-        relevance: 'Maps note-taking value to follow-up execution quality.',
-        note: 'Supports recommendation to emphasize action-item clarity.',
+        relevance: 'Shows how narrow educational content builds authority in early launches.',
+        note: 'Used to shape the recommended launch sequence.'
       },
       {
-        title: 'Privacy Objection Log',
-        type: 'customer objection notes',
-        reliability: 'low',
-        relevance: 'Captures common hesitation around consent and data retention.',
-        note: 'Directional signal that should be validated in live sales calls.',
-      },
+        title: 'Niche SaaS Messaging Conversion Review',
+        type: 'conversion analysis',
+        reliability: 'high',
+        relevance: 'Highlights the link between specificity and early conversion quality.',
+        note: 'Used to support the messaging recommendation.'
+      }
     ],
     evidence: [
       {
-        claim: 'Setup time and transcript clarity dominate first impressions in trial accounts.',
-        sourceTitle: 'Small Team Tool Evaluation Notes',
+        claim: 'Problem-aware audiences deliver better feedback than broad traffic sources.',
+        source: 'Early Stage SaaS Channel Efficiency Notes',
         strength: 'high',
-        excerpt: 'Evaluation success correlated most with rapid time to first useful note output.'
+        excerpt: 'Narrow distribution channels produced higher quality responses and faster product learning than generalized campaigns.'
       },
       {
-        claim: 'Teams retain tools when meeting notes improve accountability across participants.',
-        sourceTitle: 'Meeting Workflow Review',
-        strength: 'high',
-        excerpt: 'Searchable summaries and clear action owners increased perceived team value after the meeting ended.'
-      },
-      {
-        claim: 'Privacy and recording consent concerns can stop rollout even after a positive demo.',
-        sourceTitle: 'Privacy Objection Log',
+        claim: 'Founder voice is a strong trust signal in a niche category.',
+        source: 'Founder-Led Distribution Patterns',
         strength: 'medium',
-        excerpt: 'Several objections focused on governance and participant comfort rather than feature capability.'
+        excerpt: 'Early buyers responded more positively to educational content tied directly to operator experience.'
       },
-    ],
-    report: {
-      executiveSummary: 'Small teams adopt AI note-taking tools when setup is frictionless, outputs are immediately useful, and team-wide follow-up gets easier. Trust and governance concerns remain a meaningful blocker, so the product story should balance convenience with clarity on consent and data handling.',
-      recommendations: [
-        'Lead product positioning with quick setup and immediate meeting recap value.',
-        'Show how summaries, search, and action ownership help the whole team, not just one user.',
-        'Address privacy, consent, and admin controls early in the evaluation journey.',
-      ],
-      openQuestions: [
-        'How much transcript accuracy variance is acceptable before trust drops materially?',
-        'Which collaboration features create the clearest upgrade path after an initial trial?',
-      ],
-      risks: [
-        'A feature-heavy message can dilute the core value of clarity and speed.',
-        'Governance concerns may stall multi-user rollout if not answered early.',
-      ],
-      sourceNotes: [
-        'Objection logs are qualitative and should be paired with direct customer interviews.',
-        'Current evidence is stronger on adoption drivers than on pricing sensitivity.',
-      ],
-      confidence: 'high',
-    },
+      {
+        claim: 'Specific positioning improves demo conversion.',
+        source: 'Niche SaaS Messaging Conversion Review',
+        strength: 'high',
+        excerpt: 'Messaging anchored to a single urgent pain point converted more consistently than broad category descriptions.'
+      }
+    ]
   },
   {
-    id: 'chatbot-comparison',
-    matchTerms: ['chatbot', 'website', 'support', 'compare', 'assistant'],
-    title: 'Website Chatbot Comparison',
-    domain: 'Vendor comparison',
-    plan: {
-      researchQuestion: 'How should a small business compare website chatbot options for support and lead capture?',
-      subQuestions: [
-        'What baseline capabilities are table stakes for the MVP decision?',
-        'Where do implementation complexity and maintenance costs differ most?',
-        'How much should human handoff and knowledge quality shape the decision?',
-      ],
-      methodology: [
-        'Compare tools across setup effort, knowledge control, handoff quality, and maintenance burden.',
-        'Focus on decision criteria a small team can evaluate quickly.',
-        'Separate marketing claims from workflow-level operational impact.',
-      ],
-    },
+    id: 'chatbot-options',
+    matcher: /chatbot|support|customer service|website assistant|knowledge base/i,
+    title: 'Website chatbot options for customer support',
+    domain: 'Support tooling',
+    summary: 'For a website support chatbot, the scenario favors solutions that reduce repetitive tickets without creating trust problems. The best option is typically the one with clear handoff paths, reliable knowledge coverage, and easy maintenance by support operations.',
+    plan: [
+      'Define the top repetitive support intents to automate first.',
+      'Compare chatbot quality on knowledge coverage, escalation design, and upkeep effort.',
+      'Recommend a rollout that starts with contained, low-risk support journeys.'
+    ],
+    recommendations: [
+      'Start with a support assistant focused on repetitive questions and known workflows.',
+      'Require clear escalation to human support for ambiguous or high-risk issues.',
+      'Assign ownership for weekly knowledge review before expanding coverage.'
+    ],
+    questions: [
+      'Which support intents are stable enough to automate immediately?',
+      'How will the team detect hallucinated or outdated answers in production?'
+    ],
+    risks: [
+      'Poor escalation design can increase frustration instead of reducing ticket load.',
+      'Knowledge drift will erode answer quality if no owner reviews content regularly.'
+    ],
+    notes: [
+      'Contained support workflows make early chatbot deployments safer.',
+      'Operational ownership is as important as model quality in this scenario.'
+    ],
+    confidence: 'high',
     findings: [
       {
-        title: 'Knowledge quality matters more than interface polish.',
-        summary: 'The most attractive chatbot UI still fails if the knowledge source is thin, outdated, or hard to maintain.',
-        confidence: 'high',
+        title: 'Reliable escalation is a non-negotiable requirement',
+        summary: 'Users tolerate automation more when there is an obvious path to a human for edge cases.',
+        confidence: 'high'
       },
       {
-        title: 'Human handoff is a decisive trust feature.',
-        summary: 'Small teams need a clear fallback path for uncertain answers, high-intent leads, and support escalation.',
-        confidence: 'high',
+        title: 'Knowledge maintenance drives long-term answer quality',
+        summary: 'Chatbot success depends on keeping the underlying support content current and structured.',
+        confidence: 'high'
       },
       {
-        title: 'Maintenance burden separates simple wins from future drag.',
-        summary: 'The wrong tool can create ongoing content maintenance work that outweighs the initial setup speed advantage.',
-        confidence: 'medium',
-      },
+        title: 'Scoped rollout lowers support risk',
+        summary: 'Starting with repetitive support intents creates clearer measurement and fewer trust failures.',
+        confidence: 'medium'
+      }
     ],
     sources: [
       {
-        title: 'Support Workflow Comparison Notes',
-        type: 'comparison memo',
-        reliability: 'medium',
-        relevance: 'Frames implementation tradeoffs for lean teams.',
-        note: 'Useful for ranking setup and maintenance complexity.',
+        title: 'Support Automation Operating Guide',
+        type: 'operations guide',
+        reliability: 'high',
+        relevance: 'Explains safe rollout patterns for support automation and human handoff.',
+        note: 'Used to define the first release scope.'
       },
       {
-        title: 'Lead Capture Journey Review',
-        type: 'journey analysis',
-        reliability: 'medium',
-        relevance: 'Clarifies where handoff quality impacts conversion and trust.',
-        note: 'Supports the recommendation to prioritize escalation design.',
+        title: 'Knowledge Base Maintenance Review',
+        type: 'process review',
+        reliability: 'high',
+        relevance: 'Connects answer quality with content freshness and ownership.',
+        note: 'Used to support the recommendation for weekly review ownership.'
       },
       {
-        title: 'Knowledge Base Audit Heuristics',
-        type: 'operations notes',
+        title: 'Customer Trust Signals in Automated Support',
+        type: 'research note',
         reliability: 'medium',
-        relevance: 'Shows why answer quality depends on knowledge upkeep.',
-        note: 'Useful for ongoing ownership planning.',
-      },
+        relevance: 'Highlights why visible escalation and confidence cues matter.',
+        note: 'Used to evaluate support experience risk.'
+      }
     ],
     evidence: [
       {
-        claim: 'Chatbot performance is constrained by knowledge quality more than interface design.',
-        sourceTitle: 'Knowledge Base Audit Heuristics',
+        claim: 'Visible human handoff improves user trust in automated support.',
+        source: 'Customer Trust Signals in Automated Support',
         strength: 'high',
-        excerpt: 'Weak source material produced poor answers regardless of the visible assistant experience.'
+        excerpt: 'Users were more willing to accept automated answers when escalation paths were immediate and obvious.'
       },
       {
-        claim: 'Clear escalation paths matter for both support trust and sales conversion.',
-        sourceTitle: 'Lead Capture Journey Review',
+        claim: 'Knowledge freshness is a leading driver of support assistant quality.',
+        source: 'Knowledge Base Maintenance Review',
         strength: 'high',
-        excerpt: 'Users responded better when the assistant could hand off confidently instead of over-answering.'
+        excerpt: 'Teams with clear content ownership maintained more accurate support automation outcomes over time.'
       },
       {
-        claim: 'Maintenance overhead is often underestimated during tool selection.',
-        sourceTitle: 'Support Workflow Comparison Notes',
+        claim: 'Low-risk intent scoping reduces launch complexity.',
+        source: 'Support Automation Operating Guide',
         strength: 'medium',
-        excerpt: 'Operational upkeep became a larger burden than initial setup after the first launch phase.'
-      },
-    ],
-    report: {
-      executiveSummary: 'A small business comparing chatbot tools should prioritize knowledge quality, human handoff, and maintenance burden ahead of surface-level polish. The best MVP choice is usually the option that can stay accurate and operationally manageable over time.',
-      recommendations: [
-        'Audit current knowledge sources before comparing chatbot vendors.',
-        'Require a clear human handoff path for uncertain answers and high-value conversations.',
-        'Score each option on ongoing maintenance ownership, not just setup speed.',
-      ],
-      openQuestions: [
-        'Which conversations should always route to a human immediately?',
-        'How frequently will knowledge sources need updating after launch?',
-      ],
-      risks: [
-        'Selecting based on demo polish can hide long-term content maintenance costs.',
-        'Weak escalation design can reduce both user trust and lead quality.',
-      ],
-      sourceNotes: [
-        'Current notes are strongest for workflow design and weaker for hard ROI benchmarks.',
-        'A real evaluation should include live testing with representative knowledge content.',
-      ],
-      confidence: 'high',
-    },
-  },
+        excerpt: 'Beginning with repetitive, rules-based intents reduced incident risk during the first support automation rollout.'
+      }
+    ]
+  }
 ];
+
+const fallbackScenario = {
+  id: 'generic-fallback',
+  matcher: /.*/,
+  title: 'Generic research scenario',
+  domain: 'General analysis',
+  summary: 'This fallback scenario creates a structured research brief for objectives that do not match a predefined topic. It emphasizes framing, source diversity, evidence tracking, and practical next steps without claiming live retrieval.',
+  plan: [
+    'Clarify the target decision, audience, and time horizon for the research request.',
+    'Collect a balanced set of reference types to compare assumptions and tradeoffs.',
+    'Convert evidence into a concise brief with decisions, risks, and follow-up questions.'
+  ],
+  recommendations: [
+    'Narrow the decision question before expanding the source set.',
+    'Validate the most important assumption with one direct evidence stream first.',
+    'Use the resulting brief as a decision aid rather than a final proof source.'
+  ],
+  questions: [
+    'Which outcome matters most for this research objective?',
+    'What evidence would most quickly confirm or disprove the leading assumption?'
+  ],
+  risks: [
+    'Broad objectives can create shallow findings without a clear decision lens.',
+    'Mixed-quality references can reduce confidence if evidence criteria are unclear.'
+  ],
+  notes: [
+    'Fallback mode uses deterministic placeholders rather than live external research.',
+    'This static MVP is designed for product validation, not production-grade evidence gathering.'
+  ],
+  confidence: 'medium',
+  findings: [
+    {
+      title: 'A tighter decision frame improves research quality',
+      summary: 'Well-scoped questions lead to clearer plans, more relevant sources, and more actionable findings.',
+      confidence: 'high'
+    },
+    {
+      title: 'Source diversity improves tradeoff visibility',
+      summary: 'Using multiple source types helps expose assumptions, limitations, and conflicting signals.',
+      confidence: 'medium'
+    },
+    {
+      title: 'Structured synthesis is necessary for actionability',
+      summary: 'Raw notes become useful only after they are translated into decisions, risks, and next steps.',
+      confidence: 'medium'
+    }
+  ],
+  sources: [
+    {
+      title: 'Research Framing Checklist',
+      type: 'playbook',
+      reliability: 'medium',
+      relevance: 'Provides a decision-led framing model for ambiguous objectives.',
+      note: 'Used to shape the fallback research plan.'
+    },
+    {
+      title: 'Evidence Quality Reference Guide',
+      type: 'reference note',
+      reliability: 'medium',
+      relevance: 'Used to separate stronger support from weak assumptions.',
+      note: 'Supports confidence scoring in the fallback scenario.'
+    },
+    {
+      title: 'Synthesis Structure Template',
+      type: 'analysis template',
+      reliability: 'high',
+      relevance: 'Helps convert findings into a concise executive brief.',
+      note: 'Used to format the final report output.'
+    }
+  ],
+  evidence: [
+    {
+      claim: 'Decision-led framing raises relevance across the workflow.',
+      source: 'Research Framing Checklist',
+      strength: 'high',
+      excerpt: 'When the research goal is tied to a decision, planning and synthesis become more focused and useful.'
+    },
+    {
+      claim: 'Confidence depends on both source quality and evidence traceability.',
+      source: 'Evidence Quality Reference Guide',
+      strength: 'medium',
+      excerpt: 'Teams trust conclusions more when claims are linked to explicit supporting references.'
+    },
+    {
+      claim: 'A repeatable brief format improves downstream usability.',
+      source: 'Synthesis Structure Template',
+      strength: 'high',
+      excerpt: 'Consistent output structures make research easier to review, compare, and reuse.'
+    }
+  ]
+};
 
 const state = {
   input: {
@@ -341,359 +402,185 @@ const state = {
     format: 'brief',
     includeRisks: true,
     includeQuestions: true,
-    includeSourceNotes: true,
+    includeNotes: true
   },
   run: {
     status: 'idle',
     activeStep: -1,
-    startedAt: null,
-    completedAt: null,
+    completedAt: null
   },
-  scenario: null,
+  scenarioIndex: 0,
+  scenario: fallbackScenario
 };
 
 const elements = {
-  year: document.getElementById('year'),
   objectiveInput: document.getElementById('objective-input'),
   scopeInput: document.getElementById('scope-input'),
   formatInput: document.getElementById('format-input'),
   risksToggle: document.getElementById('risks-toggle'),
   questionsToggle: document.getElementById('questions-toggle'),
   notesToggle: document.getElementById('notes-toggle'),
-  runDemoButton: document.getElementById('run-demo-button'),
-  workflowButton: document.getElementById('workflow-button'),
-  copySummaryButton: document.getElementById('copy-summary-button'),
-  loadScenarioButton: document.getElementById('load-scenario-button'),
-  runStatus: document.getElementById('run-status'),
-  workflowSteps: document.getElementById('workflow-steps'),
+  runButton: document.getElementById('run-demo-button'),
+  workflowContainer: document.getElementById('workflow-steps'),
   findingsList: document.getElementById('findings-list'),
   sourcesList: document.getElementById('sources-list'),
   evidenceList: document.getElementById('evidence-list'),
-  scenarioTitle: document.getElementById('scenario-title'),
-  sourceCount: document.getElementById('source-count'),
-  evidenceCount: document.getElementById('evidence-count'),
+  status: document.getElementById('run-status'),
   reportSummary: document.getElementById('report-summary'),
-  planList: document.getElementById('plan-list'),
+  reportPlan: document.getElementById('report-plan'),
   reportRecommendations: document.getElementById('report-recommendations'),
-  reportGaps: document.getElementById('report-gaps'),
+  reportQuestions: document.getElementById('report-questions'),
   reportRisks: document.getElementById('report-risks'),
-  reportSourceNotes: document.getElementById('report-source-notes'),
+  reportNotes: document.getElementById('report-notes'),
   reportConfidence: document.getElementById('report-confidence'),
   reportTimestamp: document.getElementById('report-timestamp'),
+  copySummaryButton: document.getElementById('copy-summary-button'),
+  loadScenarioButton: document.getElementById('load-scenario-button')
 };
 
-function setYear() {
-  if (elements.year) {
-    elements.year.textContent = new Date().getFullYear();
-  }
+function cloneScenario(scenario) {
+  return JSON.parse(JSON.stringify(scenario));
 }
 
-function readInputState() {
+function getWorkflowSteps() {
+  return workflowTemplate.map((step, index) => {
+    let status = 'waiting';
+    if (state.run.activeStep === index && state.run.status === 'running') {
+      status = 'active';
+    }
+    if (state.run.activeStep > index || state.run.status === 'complete') {
+      status = 'complete';
+    }
+    return { ...step, status, number: index + 1 };
+  });
+}
+
+function selectScenarioForObjective(objective) {
+  const matched = scenarioCatalog.find((scenario) => scenario.matcher.test(objective));
+  return cloneScenario(matched || fallbackScenario);
+}
+
+function applyScenarioToInputs() {
+  const scenario = scenarioCatalog[state.scenarioIndex % scenarioCatalog.length];
+  state.input.objective = scenario.title === 'AI note-taking tools for small teams'
+    ? 'Evaluate AI note-taking tools for small remote teams and identify the best option for a fast pilot rollout.'
+    : scenario.title === 'Launch channels for a niche SaaS'
+      ? 'Determine the most effective launch channels for a niche SaaS with a limited early-stage budget.'
+      : 'Compare website chatbot options for customer support and recommend the safest rollout approach.';
+
+  elements.objectiveInput.value = state.input.objective;
+  elements.scopeInput.value = 'standard';
+  elements.formatInput.value = 'brief';
+  elements.risksToggle.checked = true;
+  elements.questionsToggle.checked = true;
+  elements.notesToggle.checked = true;
+}
+
+function readInputs() {
   state.input.objective = elements.objectiveInput.value.trim();
   state.input.scope = elements.scopeInput.value;
   state.input.format = elements.formatInput.value;
   state.input.includeRisks = elements.risksToggle.checked;
   state.input.includeQuestions = elements.questionsToggle.checked;
-  state.input.includeSourceNotes = elements.notesToggle.checked;
-}
-
-function selectScenario(objective) {
-  const normalizedObjective = objective.toLowerCase();
-  const matchedScenario = scenarios.find((scenario) =>
-    scenario.matchTerms.some((term) => normalizedObjective.includes(term))
-  );
-
-  if (matchedScenario) {
-    return matchedScenario;
-  }
-
-  return {
-    id: 'generic-fallback',
-    title: 'General Research Scenario',
-    domain: 'General analysis',
-    plan: {
-      researchQuestion: `How should this objective be framed for a ${state.input.format} output?`,
-      subQuestions: [
-        'What is the core decision or outcome the user needs?',
-        'Which assumptions require validation before acting on the recommendation?',
-        'What evidence types would most improve confidence in the final brief?',
-      ],
-      methodology: [
-        'Restate the objective in decision-oriented language.',
-        'Organize available evidence into findings, gaps, and recommended next steps.',
-        'Flag areas that need live research beyond this static MVP simulation.',
-      ],
-    },
-    findings: [
-      {
-        title: 'The objective is directionally clear but still benefits from tighter success criteria.',
-        summary: 'A stronger definition of audience, constraints, and desired outcome would improve prioritization.',
-        confidence: 'medium',
-      },
-      {
-        title: 'The most useful first output is a concise brief rather than a broad research program.',
-        summary: 'For an MVP, a compact synthesis creates clarity faster than an exhaustive analysis.',
-        confidence: 'medium',
-      },
-      {
-        title: 'The next confidence gain should come from live validation, not more abstract planning.',
-        summary: 'Direct interviews, usage evidence, or current benchmarks would sharpen the decision significantly.',
-        confidence: 'medium',
-      },
-    ],
-    sources: [
-      {
-        title: 'Objective Intake Notes',
-        type: 'input synthesis',
-        reliability: 'medium',
-        relevance: 'Derived from the submitted objective and selected output preferences.',
-        note: 'Acts as the baseline framing layer for this demo scenario.',
-      },
-      {
-        title: 'MVP Research Heuristics',
-        type: 'framework notes',
-        reliability: 'medium',
-        relevance: 'Provides a generic structure for translating objectives into brief-ready outputs.',
-        note: 'Useful for planning but not a substitute for live evidence collection.',
-      },
-    ],
-    evidence: [
-      {
-        claim: 'Clearer constraints usually improve the usefulness of a research brief.',
-        sourceTitle: 'Objective Intake Notes',
-        strength: 'medium',
-        excerpt: 'The input objective indicates intent, but outcome metrics and audience precision remain broad.'
-      },
-      {
-        claim: 'A compact synthesis is the right MVP artifact before deeper operational research begins.',
-        sourceTitle: 'MVP Research Heuristics',
-        strength: 'medium',
-        excerpt: 'Early product decisions benefit from a lightweight synthesis that can be refined with future evidence.'
-      },
-    ],
-    report: {
-      executiveSummary: `This demo run translated the objective into a ${state.input.format} shaped output with a lightweight plan, directional findings, and explicit gaps. The result is best used as a framing artifact before live research begins.`,
-      recommendations: [
-        'Define the target audience and success metric more narrowly.',
-        'Validate the top assumptions with real interviews, benchmarks, or workflow observations.',
-        'Use this simulated structure as the template for a later live research pipeline.',
-      ],
-      openQuestions: [
-        'Which evidence source would most quickly reduce uncertainty for this objective?',
-        'What decision will this brief directly inform once the next layer of evidence is gathered?',
-      ],
-      risks: [
-        'Current findings are simulated and should not be treated as live market evidence.',
-        'Broad objectives can produce generic recommendations until constraints are sharpened.',
-      ],
-      sourceNotes: [
-        'This fallback scenario is intentionally generic so the page remains usable with any typed objective.',
-        'A real implementation would replace these notes with retrieval-backed citations and timestamps.',
-      ],
-      confidence: 'low',
-    },
-  };
-}
-
-function getStatusLabel(index) {
-  if (state.run.status === 'idle') {
-    return 'waiting';
-  }
-
-  if (index < state.run.activeStep) {
-    return 'complete';
-  }
-
-  if (index === state.run.activeStep && state.run.status !== 'complete') {
-    return 'active';
-  }
-
-  if (state.run.status === 'complete') {
-    return 'complete';
-  }
-
-  return 'waiting';
-}
-
-function getStatusClass(status) {
-  if (status === 'active') {
-    return 'status-active';
-  }
-
-  if (status === 'complete') {
-    return 'status-complete';
-  }
-
-  return 'status-waiting';
+  state.input.includeNotes = elements.notesToggle.checked;
 }
 
 function renderWorkflow() {
-  const markup = workflowTemplates
-    .map((step, index) => {
-      const status = getStatusLabel(index);
-      return `
-        <article class="workflow-step">
-          <div class="workflow-step-header">
-            <span class="workflow-step-number">${index + 1}</span>
-            <span class="status-pill ${getStatusClass(status)}">${status}</span>
-          </div>
-          <div>
-            <h3>${step.label}</h3>
-            <p>${step.description}</p>
-          </div>
-        </article>
-      `;
-    })
-    .join('');
-
-  elements.workflowSteps.innerHTML = markup;
-}
-
-function renderList(container, items, renderer, emptyMessage) {
-  if (!items.length) {
-    container.innerHTML = `<div class="section-card"><p>${emptyMessage}</p></div>`;
-    return;
-  }
-
-  container.innerHTML = items.map(renderer).join('');
+  const steps = getWorkflowSteps();
+  elements.workflowContainer.innerHTML = steps.map((step) => `
+    <article class="workflow-step">
+      <div class="workflow-top">
+        <span class="workflow-number">${step.number}</span>
+        <span class="status-pill status-${step.status}">${step.status}</span>
+      </div>
+      <h3>${step.label}</h3>
+      <p>${step.description}</p>
+    </article>
+  `).join('');
 }
 
 function renderFindings() {
-  const findings = state.scenario ? state.scenario.findings : [];
-  renderList(
-    elements.findingsList,
-    findings,
-    (item) => `
-      <article class="finding-card">
-        <div class="card-top">
-          <h3>${item.title}</h3>
-          <span class="tag ${item.confidence === 'high' ? 'confidence-high' : 'confidence-medium'}">${item.confidence} confidence</span>
-        </div>
-        <p>${item.summary}</p>
-      </article>
-    `,
-    'No findings yet. Run the demo to populate this panel.'
-  );
+  const findings = state.scenario.findings || [];
+  elements.findingsList.innerHTML = findings.map((finding) => `
+    <article class="finding-card">
+      <div class="card-top">
+        <span class="tag confidence-${finding.confidence}">${finding.confidence} confidence</span>
+      </div>
+      <h4 class="card-title">${finding.title}</h4>
+      <p class="finding-summary">${finding.summary}</p>
+    </article>
+  `).join('') || '<p class="empty-state">No findings yet. Run the demo to populate this panel.</p>';
 }
 
 function renderSources() {
-  const sources = state.scenario ? state.scenario.sources : [];
-  elements.sourceCount.textContent = `${sources.length} ${sources.length === 1 ? 'source' : 'sources'}`;
-  renderList(
-    elements.sourcesList,
-    sources,
-    (item) => `
-      <article class="source-card">
-        <div class="card-top">
-          <h3>${item.title}</h3>
-          <span class="micro-tag">${item.type}</span>
-        </div>
-        <p>${item.relevance}</p>
-        <div class="card-meta">
-          <span class="micro-tag">Reliability: ${item.reliability}</span>
-          <span class="micro-tag">${item.note}</span>
-        </div>
-      </article>
-    `,
-    'No sources yet. The evidence base appears here after a run.'
-  );
+  const sources = state.scenario.sources || [];
+  elements.sourcesList.innerHTML = sources.map((source) => `
+    <article class="source-card">
+      <div class="card-top">
+        <span class="tag">${source.type}</span>
+        <span class="status-pill status-${source.reliability === 'high' ? 'complete' : source.reliability === 'medium' ? 'active' : 'waiting'}">${source.reliability} reliability</span>
+      </div>
+      <h4 class="card-title">${source.title}</h4>
+      <p class="card-meta">${source.relevance}</p>
+      <p class="source-note">${source.note}</p>
+    </article>
+  `).join('') || '<p class="empty-state">No sources yet. Run the demo to populate this panel.</p>';
 }
 
 function renderEvidence() {
-  const evidence = state.scenario ? state.scenario.evidence : [];
-  elements.evidenceCount.textContent = `${evidence.length} ${evidence.length === 1 ? 'note' : 'notes'}`;
-  renderList(
-    elements.evidenceList,
-    evidence,
-    (item) => `
-      <article class="evidence-card">
-        <div class="card-top">
-          <h3>${item.sourceTitle}</h3>
-          <span class="micro-tag">Strength: ${item.strength}</span>
-        </div>
-        <p><strong>Claim:</strong> ${item.claim}</p>
-        <p><strong>Note:</strong> ${item.excerpt}</p>
-      </article>
-    `,
-    'No evidence notes yet. Run the workflow to attach claims to sources.'
-  );
+  const evidence = state.scenario.evidence || [];
+  elements.evidenceList.innerHTML = evidence.map((item) => `
+    <article class="evidence-card">
+      <div class="card-top">
+        <span class="tag">${item.strength} strength</span>
+      </div>
+      <h4 class="card-title">${item.claim}</h4>
+      <p class="card-meta">Source: ${item.source}</p>
+      <p class="evidence-excerpt">${item.excerpt}</p>
+    </article>
+  `).join('') || '<p class="empty-state">No evidence yet. Run the demo to populate this panel.</p>';
 }
 
-function createBulletList(items, fallbackText) {
-  if (!items || !items.length) {
-    return `<p>${fallbackText}</p>`;
-  }
+function renderList(target, items, emptyText) {
+  target.innerHTML = items.length
+    ? items.map((item) => `<li>${item}</li>`).join('')
+    : `<li>${emptyText}</li>`;
+}
 
-  return `<ul>${items.map((item) => `<li>${item}</li>`).join('')}</ul>`;
+function buildPlanList() {
+  return [
+    `Objective: ${state.input.objective}`,
+    `Scope: ${state.input.scope}`,
+    `Output format: ${state.input.format}`,
+    ...state.scenario.plan
+  ];
 }
 
 function renderReport() {
-  if (!state.scenario) {
-    elements.scenarioTitle.textContent = 'Scenario not started';
-    elements.scenarioTitle.className = 'tag neutral';
-    elements.reportSummary.textContent = 'Run the demo to generate a structured summary grounded in mock findings and source notes.';
-    elements.planList.innerHTML = '<p>No research plan generated yet.</p>';
-    elements.reportRecommendations.innerHTML = '<p>No recommendations yet.</p>';
-    elements.reportGaps.innerHTML = '<p>No open questions yet.</p>';
-    elements.reportRisks.innerHTML = '<p>No risk notes yet.</p>';
-    elements.reportSourceNotes.innerHTML = '<p>No source notes yet.</p>';
-    elements.reportConfidence.textContent = 'Confidence pending';
-    elements.reportConfidence.className = 'tag neutral';
-    elements.reportTimestamp.textContent = 'No completed run yet';
-    return;
-  }
-
-  const { title, domain, plan, report } = state.scenario;
-  elements.scenarioTitle.textContent = `${title} - ${domain}`;
-  elements.scenarioTitle.className = 'tag neutral';
-  elements.reportSummary.textContent = report.executiveSummary;
-  elements.planList.innerHTML = createBulletList(
-    [plan.researchQuestion, ...plan.subQuestions, ...plan.methodology],
-    'No plan details available.'
+  elements.reportSummary.textContent = state.scenario.summary;
+  renderList(elements.reportPlan, buildPlanList(), 'No plan generated yet.');
+  renderList(elements.reportRecommendations, state.scenario.recommendations, 'No recommendations generated yet.');
+  renderList(
+    elements.reportQuestions,
+    state.input.includeQuestions ? state.scenario.questions : [],
+    state.input.includeQuestions ? 'No open questions generated yet.' : 'Open questions hidden for this run.'
   );
-  elements.reportRecommendations.innerHTML = createBulletList(
-    report.recommendations,
-    'No recommendations available.'
+  renderList(
+    elements.reportRisks,
+    state.input.includeRisks ? state.scenario.risks : [],
+    state.input.includeRisks ? 'No risks generated yet.' : 'Risks hidden for this run.'
   );
-  elements.reportGaps.innerHTML = state.input.includeQuestions
-    ? createBulletList(report.openQuestions, 'No open questions available.')
-    : '<p>Open questions are hidden for this run.</p>';
-  elements.reportRisks.innerHTML = state.input.includeRisks
-    ? createBulletList(report.risks, 'No risks available.')
-    : '<p>Risk notes are hidden for this run.</p>';
-  elements.reportSourceNotes.innerHTML = state.input.includeSourceNotes
-    ? createBulletList(report.sourceNotes, 'No source notes available.')
-    : '<p>Source notes are hidden for this run.</p>';
-  elements.reportConfidence.textContent = `${report.confidence} confidence`;
-  elements.reportConfidence.className = `tag ${
-    report.confidence === 'high'
-      ? 'confidence-high'
-      : report.confidence === 'low'
-        ? 'confidence-low'
-        : 'confidence-medium'
-  }`;
-  elements.reportTimestamp.textContent = state.run.completedAt
-    ? `Completed ${new Date(state.run.completedAt).toLocaleString()}`
-    : 'Run in progress';
-}
-
-function renderStatus() {
-  if (state.run.status === 'idle') {
-    elements.runStatus.textContent = 'Ready to simulate a research run.';
-    return;
-  }
-
-  if (state.run.status === 'running') {
-    const activeLabel = workflowTemplates[state.run.activeStep]?.label || 'Processing';
-    elements.runStatus.textContent = `Running demo research: ${activeLabel}.`;
-    return;
-  }
-
-  elements.runStatus.textContent = `Research brief complete for ${state.scenario.title}.`;
+  renderList(
+    elements.reportNotes,
+    state.input.includeNotes ? state.scenario.notes : [],
+    state.input.includeNotes ? 'No source notes generated yet.' : 'Source notes hidden for this run.'
+  );
+  elements.reportConfidence.textContent = state.scenario.confidence;
+  elements.reportConfidence.className = `tag confidence-${state.scenario.confidence}`;
+  elements.reportTimestamp.textContent = state.run.completedAt || 'In progress';
 }
 
 function renderAll() {
-  renderStatus();
   renderWorkflow();
   renderFindings();
   renderSources();
@@ -701,78 +588,73 @@ function renderAll() {
   renderReport();
 }
 
-function delay(ms) {
-  return new Promise((resolve) => window.setTimeout(resolve, ms));
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function runResearchDemo() {
-  readInputState();
-  state.scenario = selectScenario(state.input.objective);
+async function runDemoResearch() {
+  readInputs();
+  state.scenario = selectScenarioForObjective(state.input.objective || 'generic objective');
   state.run.status = 'running';
-  state.run.activeStep = 0;
-  state.run.startedAt = new Date().toISOString();
   state.run.completedAt = null;
-  renderAll();
+  elements.status.textContent = `Running demo research for: ${state.scenario.title}`;
 
-  for (let index = 0; index < workflowTemplates.length; index += 1) {
+  for (let index = 0; index < workflowTemplate.length; index += 1) {
     state.run.activeStep = index;
-    renderAll();
-    await delay(450);
+    renderWorkflow();
+    await sleep(420);
   }
 
   state.run.status = 'complete';
-  state.run.completedAt = new Date().toISOString();
-  renderAll();
-}
-
-function loadAnotherScenario() {
-  const currentScenarioId = state.scenario ? state.scenario.id : null;
-  const currentIndex = scenarios.findIndex((scenario) => scenario.id === currentScenarioId);
-  const nextScenario = scenarios[(currentIndex + 1 + scenarios.length) % scenarios.length];
-
-  elements.objectiveInput.value = nextScenario.plan.researchQuestion;
-  elements.scopeInput.value = currentScenarioId === nextScenario.id ? 'broad' : 'standard';
-  elements.formatInput.value = 'brief';
-  elements.risksToggle.checked = true;
-  elements.questionsToggle.checked = true;
-  elements.notesToggle.checked = true;
-  state.run.status = 'idle';
-  state.run.activeStep = -1;
-  state.run.completedAt = null;
-  state.scenario = null;
+  state.run.activeStep = workflowTemplate.length;
+  state.run.completedAt = new Date().toLocaleString();
+  elements.status.textContent = `Completed research brief for: ${state.scenario.title}`;
   renderAll();
 }
 
 async function copySummary() {
   const summary = elements.reportSummary.textContent.trim();
-
-  if (!summary || summary.startsWith('Run the demo')) {
-    elements.runStatus.textContent = 'Run the demo before copying the summary.';
+  if (!summary || summary === 'Run the demo to generate a summary.') {
+    elements.status.textContent = 'Run the demo before copying the summary.';
     return;
   }
 
   try {
     if (navigator.clipboard && navigator.clipboard.writeText) {
       await navigator.clipboard.writeText(summary);
-      elements.runStatus.textContent = 'Executive summary copied to clipboard.';
-      return;
+      elements.status.textContent = 'Executive summary copied to clipboard.';
+    } else {
+      const helper = document.createElement('textarea');
+      helper.value = summary;
+      document.body.appendChild(helper);
+      helper.select();
+      document.execCommand('copy');
+      document.body.removeChild(helper);
+      elements.status.textContent = 'Executive summary copied using fallback copy mode.';
     }
   } catch (error) {
-    // Fall back to a selection-based copy message below.
+    elements.status.textContent = 'Unable to copy the summary in this browser context.';
   }
-
-  elements.runStatus.textContent = 'Clipboard access is unavailable in this browser. Select and copy the summary manually.';
 }
 
-function attachEvents() {
-  elements.runDemoButton.addEventListener('click', runResearchDemo);
+function loadAnotherScenario() {
+  state.scenarioIndex = (state.scenarioIndex + 1) % scenarioCatalog.length;
+  applyScenarioToInputs();
+  state.scenario = cloneScenario(scenarioCatalog[state.scenarioIndex]);
+  state.run.status = 'idle';
+  state.run.activeStep = -1;
+  state.run.completedAt = null;
+  elements.status.textContent = `Loaded scenario: ${state.scenario.title}. Run the demo to generate a new brief.`;
+  renderAll();
+}
+
+function initialize() {
+  applyScenarioToInputs();
+  state.scenario = cloneScenario(scenarioCatalog[0]);
+  renderAll();
+  elements.runButton.addEventListener('click', runDemoResearch);
   elements.copySummaryButton.addEventListener('click', copySummary);
   elements.loadScenarioButton.addEventListener('click', loadAnotherScenario);
-  elements.workflowButton.addEventListener('click', () => {
-    elements.runStatus.textContent = 'Review the workflow stages below to inspect the simulated orchestration path.';
-  });
 }
 
-setYear();
-attachEvents();
-renderAll();
+initialize();
