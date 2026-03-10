@@ -1,206 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Autonomous Research Framework MVP</title>
-    <meta
-      name="description"
-      content="A static browser-run MVP that simulates an autonomous research workflow from objective intake to final brief."
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav">
-        <a class="brand" href="#objective">Autonomous Research Framework</a>
-        <nav class="nav-links" aria-label="Primary navigation">
-          <a href="#objective">Objective</a>
-          <a href="#workflow">Workflow</a>
-          <a href="#findings">Findings</a>
-          <a href="#report">Report</a>
-        </nav>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Autonomous Research Framework MVP</title>
+  <meta name="description" content="A static browser-side MVP that simulates an autonomous research workflow.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#objective">Autonomous Research Framework MVP</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#objective">Objective</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#findings">Findings</a>
+        <a href="#report">Report</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="objective" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-copy panel panel-hero">
+          <p class="eyebrow">Static product demo</p>
+          <h1>Turn a research objective into a structured brief with findings, source notes, and next steps.</h1>
+          <p class="hero-text">
+            This MVP simulates an autonomous research run entirely in the browser. It accepts an objective,
+            generates a research plan, walks through a six-step workflow, and produces a deterministic report.
+          </p>
+          <div class="hero-actions">
+            <button id="run-demo-button" class="button button-primary" type="button">Run Demo Research</button>
+            <a class="button button-secondary" href="#workflow">View Workflow</a>
+          </div>
+          <p id="run-status" class="run-status">Ready to run a browser-side research simulation.</p>
+        </div>
+
+        <div class="panel intake-panel">
+          <div class="panel-heading">
+            <h2>Objective</h2>
+            <p>Define the goal, scope, and expected output for this demo run.</p>
+          </div>
+
+          <div class="field-group">
+            <label for="objective-input">Research objective</label>
+            <textarea id="objective-input" rows="6">Evaluate AI note-taking tools for small remote teams and identify the best option for a fast pilot rollout.</textarea>
+          </div>
+
+          <div class="field-grid">
+            <div class="field-group">
+              <label for="scope-input">Scope</label>
+              <select id="scope-input">
+                <option value="narrow">Narrow</option>
+                <option value="standard" selected>Standard</option>
+                <option value="broad">Broad</option>
+              </select>
+            </div>
+
+            <div class="field-group">
+              <label for="format-input">Output format</label>
+              <select id="format-input">
+                <option value="brief" selected>Brief</option>
+                <option value="decision memo">Decision memo</option>
+                <option value="comparison summary">Comparison summary</option>
+              </select>
+            </div>
+          </div>
+
+          <fieldset class="toggle-group">
+            <legend>Include in final report</legend>
+            <label class="toggle-item"><input id="risks-toggle" type="checkbox" checked> Risks</label>
+            <label class="toggle-item"><input id="questions-toggle" type="checkbox" checked> Open questions</label>
+            <label class="toggle-item"><input id="notes-toggle" type="checkbox" checked> Source notes</label>
+          </fieldset>
+        </div>
       </div>
-    </header>
+    </section>
 
-    <main class="page">
-      <section id="objective" class="section hero">
-        <div class="container hero-grid">
-          <div class="hero-copy section-card">
-            <p class="eyebrow">Autonomous Research Framework MVP</p>
-            <h1>Turn a research objective into a structured brief with findings, sources, and next steps.</h1>
-            <p class="intro">
-              This conservative browser-side MVP simulates a transparent research workflow without any build tooling,
-              dependencies, or backend services. Enter an objective, run the demo, and inspect each stage from plan
-              creation through final synthesis.
-            </p>
-            <div class="hero-actions">
-              <button id="run-demo-button" type="button">Run Demo Research</button>
-              <a class="secondary-link" id="workflow-button" href="#workflow">View Workflow</a>
-            </div>
-            <p id="run-status" class="status-message">Ready to simulate a research run.</p>
-          </div>
-
-          <aside class="section-card intake-card" aria-label="Research objective intake">
-            <p class="section-label">Objective Intake</p>
-            <h2>Configure the research brief</h2>
-            <form id="objective-form" class="intake-form">
-              <label class="field-group" for="objective-input">
-                <span>Research objective</span>
-                <textarea id="objective-input" name="objective" rows="6">Evaluate the best launch channels for a niche SaaS product targeting small operations teams.</textarea>
-              </label>
-
-              <div class="form-grid">
-                <label class="field-group" for="scope-input">
-                  <span>Scope</span>
-                  <select id="scope-input" name="scope">
-                    <option value="narrow">Narrow</option>
-                    <option value="standard" selected>Standard</option>
-                    <option value="broad">Broad</option>
-                  </select>
-                </label>
-
-                <label class="field-group" for="format-input">
-                  <span>Output format</span>
-                  <select id="format-input" name="format">
-                    <option value="brief" selected>Brief</option>
-                    <option value="decision memo">Decision memo</option>
-                    <option value="comparison summary">Comparison summary</option>
-                  </select>
-                </label>
-              </div>
-
-              <fieldset class="toggle-group">
-                <legend>Include in final output</legend>
-                <label><input id="risks-toggle" type="checkbox" checked /> Risks</label>
-                <label><input id="questions-toggle" type="checkbox" checked /> Open questions</label>
-                <label><input id="notes-toggle" type="checkbox" checked /> Source notes</label>
-              </fieldset>
-            </form>
-          </aside>
+    <section id="workflow" class="section-block">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Workflow</p>
+          <h2>Six-step visible research pipeline</h2>
+          <p>Each stage updates as the demo advances from intake to final brief.</p>
         </div>
-      </section>
+        <div id="workflow-steps" class="workflow-grid"></div>
+      </div>
+    </section>
 
-      <section id="workflow" class="section">
-        <div class="container section-card">
-          <div class="section-heading">
-            <div>
-              <p class="section-label">Workflow</p>
-              <h2>Visible step-by-step research orchestration</h2>
-            </div>
-            <p class="section-intro">
-              Each stage below updates during the simulated run so the research process stays readable and auditable.
-            </p>
-          </div>
-          <div id="workflow-steps" class="workflow-grid" aria-live="polite"></div>
+    <section id="findings" class="section-block section-alt">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Findings</p>
+          <h2>Structured output from the simulated research run</h2>
+          <p>Review findings, source cards, and evidence notes generated from the current scenario.</p>
         </div>
-      </section>
 
-      <section id="findings" class="section">
-        <div class="container findings-layout">
-          <div class="findings-column section-card">
-            <div class="section-heading compact">
-              <div>
-                <p class="section-label">Findings</p>
-                <h2>Key findings</h2>
-              </div>
-              <span id="scenario-title" class="tag neutral">Scenario not started</span>
+        <div class="findings-layout">
+          <div class="panel data-panel">
+            <div class="panel-heading">
+              <h3>Key findings</h3>
+              <p>Top insights derived during synthesis.</p>
             </div>
-            <div id="findings-list" class="stack-list" aria-live="polite"></div>
+            <div id="findings-list" class="card-stack"></div>
           </div>
 
-          <div class="supporting-column">
-            <div class="section-card panel-card">
-              <div class="section-heading compact">
-                <div>
-                  <p class="section-label">Sources</p>
-                  <h2>Collected evidence base</h2>
-                </div>
-                <span id="source-count" class="meta-chip">0 sources</span>
+          <div class="side-stack">
+            <div class="panel data-panel">
+              <div class="panel-heading">
+                <h3>Sources</h3>
+                <p>Reference notes used to support the demo brief.</p>
               </div>
-              <div id="sources-list" class="stack-list" aria-live="polite"></div>
+              <div id="sources-list" class="card-stack"></div>
             </div>
 
-            <div class="section-card panel-card">
-              <div class="section-heading compact">
-                <div>
-                  <p class="section-label">Evidence</p>
-                  <h2>Evidence notes</h2>
-                </div>
-                <span id="evidence-count" class="meta-chip">0 notes</span>
+            <div class="panel data-panel">
+              <div class="panel-heading">
+                <h3>Evidence</h3>
+                <p>Claims and supporting excerpts linked to the source set.</p>
               </div>
-              <div id="evidence-list" class="stack-list" aria-live="polite"></div>
+              <div id="evidence-list" class="card-stack"></div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="report" class="section">
-        <div class="container section-card report-card">
-          <div class="section-heading">
-            <div>
-              <p class="section-label">Report</p>
-              <h2>Final research brief</h2>
-            </div>
-            <div class="report-meta">
-              <span id="report-confidence" class="tag neutral">Confidence pending</span>
-              <span id="report-timestamp" class="meta-chip">No completed run yet</span>
-            </div>
-          </div>
+    <section id="report" class="section-block">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Report</p>
+          <h2>Executive brief for the selected research scenario</h2>
+          <p>The final panel consolidates summary, plan, recommendations, open questions, risks, notes, and confidence.</p>
+        </div>
 
-          <div class="report-grid">
-            <article class="report-panel">
+        <div class="report-grid">
+          <article class="panel report-panel">
+            <div class="panel-heading">
               <h3>Executive summary</h3>
-              <p id="report-summary" class="report-text">
-                Run the demo to generate a structured summary grounded in mock findings and source notes.
-              </p>
+              <p id="report-summary">Run the demo to generate a summary.</p>
+            </div>
+
+            <div class="report-section">
+              <h4>Research plan</h4>
+              <ul id="report-plan" class="plain-list"></ul>
+            </div>
+
+            <div class="report-actions">
+              <button id="copy-summary-button" class="button button-secondary" type="button">Copy Summary</button>
+              <button id="load-scenario-button" class="button button-primary" type="button">Load Another Scenario</button>
+            </div>
+          </article>
+
+          <div class="report-side">
+            <article class="panel report-panel">
+              <div class="panel-heading">
+                <h3>Recommendations</h3>
+              </div>
+              <ul id="report-recommendations" class="plain-list"></ul>
             </article>
 
-            <article class="report-panel">
-              <h3>Research plan</h3>
-              <div id="plan-list" class="bullet-list muted-list"></div>
+            <article class="panel report-panel">
+              <div class="panel-heading">
+                <h3>Open questions</h3>
+              </div>
+              <ul id="report-questions" class="plain-list"></ul>
             </article>
 
-            <article class="report-panel">
-              <h3>Recommendations</h3>
-              <div id="report-recommendations" class="bullet-list muted-list"></div>
+            <article class="panel report-panel">
+              <div class="panel-heading">
+                <h3>Risks</h3>
+              </div>
+              <ul id="report-risks" class="plain-list"></ul>
             </article>
 
-            <article class="report-panel">
-              <h3>Open questions</h3>
-              <div id="report-gaps" class="bullet-list muted-list"></div>
+            <article class="panel report-panel">
+              <div class="panel-heading">
+                <h3>Source notes</h3>
+              </div>
+              <ul id="report-notes" class="plain-list"></ul>
             </article>
 
-            <article class="report-panel full-width">
-              <h3>Risk notes and source notes</h3>
-              <div class="two-column-lists">
-                <div>
-                  <h4>Risks</h4>
-                  <div id="report-risks" class="bullet-list muted-list"></div>
-                </div>
-                <div>
-                  <h4>Source notes</h4>
-                  <div id="report-source-notes" class="bullet-list muted-list"></div>
-                </div>
+            <article class="panel meta-panel">
+              <div class="meta-row">
+                <span>Confidence</span>
+                <strong id="report-confidence">Pending</strong>
+              </div>
+              <div class="meta-row">
+                <span>Completed</span>
+                <strong id="report-timestamp">Not started</strong>
               </div>
             </article>
           </div>
-
-          <div class="hero-actions report-actions">
-            <button id="copy-summary-button" type="button">Copy Summary</button>
-            <button id="load-scenario-button" type="button" class="secondary-button">Load Another Scenario</button>
-          </div>
         </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-row">
-        <p>Static MVP for a transparent browser-run Autonomous Research Framework.</p>
-        <p>&copy; <span id="year"></span> Autonomous Research Framework</p>
       </div>
-    </footer>
+    </section>
+  </main>
 
-    <script src="script.js"></script>
-  </body>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>Autonomous Research Framework MVP. Static browser-side demo with deterministic research scenarios.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
 </html>
