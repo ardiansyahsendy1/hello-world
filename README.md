@@ -1,43 +1,67 @@
 # Autonomous Research Framework MVP
 
-This repository contains a conservative static-site MVP for an Autonomous Research Framework.
+A fully static browser-side demo that turns a research objective into a visible workflow, structured findings, source notes, evidence, and a final brief.
 
-## What it is
+## What this project is
 
-The site is a single-page browser-run demo that simulates a transparent research workflow from objective intake to final brief. It does not use a package manager, build tooling, or external dependencies.
+This repository contains a single-page MVP for an Autonomous Research Framework.
+It is intentionally implemented with plain HTML, CSS, and JavaScript only.
+
+The app simulates a research run in the browser by walking through six stages:
+- Objective
+- Research plan
+- Source collection
+- Evidence extraction
+- Synthesis
+- Final brief
+
+It does not use build tooling, package managers, frameworks, or external dependencies.
 
 ## Files
 
-- `index.html` - single-page interface with objective intake, workflow tracker, findings, sources, evidence, and final report
-- `style.css` - responsive styling for the MVP layout and status-driven research dashboard
-- `script.js` - deterministic browser-side workflow simulation with scenario selection and report rendering
+- `index.html` - product interface and page structure
+- `style.css` - workbench layout, cards, status pills, and responsive styles
+- `script.js` - deterministic scenario engine, workflow simulation, rendering, and interactions
+- `README.md` - project description and usage
 
 ## How to use
 
 1. Open `index.html` in a browser.
-2. Review or edit the default research objective.
-3. Choose scope, output format, and optional report sections.
-4. Click `Run Demo Research`.
-5. Inspect the workflow, findings, evidence notes, and final brief.
-6. Use `Copy Summary` or `Load Another Scenario` to continue exploring the MVP.
+2. Enter a research objective or use the default text.
+3. Choose a scope and output format.
+4. Toggle whether to include risks, open questions, and source notes.
+5. Click `Run Demo Research`.
+6. Watch the workflow progress through the six research stages.
+7. Review findings, sources, evidence, and the generated report.
+8. Use `Copy Summary` to copy the executive summary.
+9. Use `Load Another Scenario` to rotate through demo scenarios.
 
-## What the MVP demonstrates
+## Demo behavior
 
-- Objective intake in a clean static UI
-- Visible workflow stages from planning through synthesis
-- Deterministic mock scenarios for repeatable browser-side demos
-- Structured findings, source notes, evidence notes, recommendations, risks, and open questions
-- A future-friendly foundation for replacing mock data with real retrieval later
+The app uses deterministic browser-side scenarios. It includes multiple predefined topics plus a generic fallback for arbitrary objectives.
 
-## Current limitations
+Included scenario coverage:
+- AI note-taking tools for small teams
+- Launch channels for a niche SaaS
+- Website chatbot options for customer support
+- Generic fallback for unmatched objectives
 
-- All research content is simulated in the browser
-- No live web retrieval, persistent storage, or backend orchestration
-- No package-based app structure or build process
+## Limitations
 
-## Future extension ideas
+- No live web retrieval
+- No backend orchestration
+- No persistence
+- No user accounts
+- No export pipeline
+- No external APIs
 
-- Replace static scenarios with live retrieval-backed data
-- Add export options for markdown or PDF briefs
-- Introduce saved run history and richer evidence traceability
-- Add a lightweight backend only after the static MVP shape is validated
+This MVP is a front-end simulation designed to validate the product shape before adding live research capabilities.
+
+## Future extensions
+
+Possible next steps after validating the static MVP:
+- Add a lightweight backend endpoint for live research requests
+- Persist research runs and history
+- Add export to Markdown or PDF
+- Add richer evidence traceability and citations
+- Add real retrieval and synthesis services
