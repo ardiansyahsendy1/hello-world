@@ -3,110 +3,201 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sendy Ardiansyah SH MBA - AI Optimizer</title>
+    <title>Autonomous Research Framework MVP</title>
+    <meta
+      name="description"
+      content="A static browser-run MVP that simulates an autonomous research workflow from objective intake to final brief."
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header class="site-header">
       <div class="container nav">
-        <a class="brand" href="#home">Sendy Ardiansyah SH MBA</a>
+        <a class="brand" href="#objective">Autonomous Research Framework</a>
         <nav class="nav-links" aria-label="Primary navigation">
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#objective">Objective</a>
+          <a href="#workflow">Workflow</a>
+          <a href="#findings">Findings</a>
+          <a href="#report">Report</a>
         </nav>
       </div>
     </header>
 
-    <main id="home" class="page">
-      <section class="hero section">
+    <main class="page">
+      <section id="objective" class="section hero">
         <div class="container hero-grid">
-          <div>
-            <p class="eyebrow">AI Optimizer</p>
-            <h1>Building simple, thoughtful web experiences.</h1>
+          <div class="hero-copy section-card">
+            <p class="eyebrow">Autonomous Research Framework MVP</p>
+            <h1>Turn a research objective into a structured brief with findings, sources, and next steps.</h1>
             <p class="intro">
-              Hi, I am Sendy Ardiansyah SH MBA, an AI Optimizer focused on clean interfaces,
-              accessible layouts, and lightweight front-end projects.
+              This conservative browser-side MVP simulates a transparent research workflow without any build tooling,
+              dependencies, or backend services. Enter an objective, run the demo, and inspect each stage from plan
+              creation through final synthesis.
             </p>
             <div class="hero-actions">
-              <button id="action-button" type="button">View Projects</button>
-              <a class="secondary-link" href="#contact">Get in Touch</a>
+              <button id="run-demo-button" type="button">Run Demo Research</button>
+              <a class="secondary-link" id="workflow-button" href="#workflow">View Workflow</a>
             </div>
-            <p id="message">Click the button to jump to featured work.</p>
+            <p id="run-status" class="status-message">Ready to simulate a research run.</p>
           </div>
 
-          <aside class="highlight-card" aria-label="Profile summary">
-            <h2>Quick Snapshot</h2>
-            <ul>
-              <li>Focused on responsive websites</li>
-              <li>Enjoys design systems and UI polish</li>
-              <li>Available for freelance and collaborations</li>
-            </ul>
+          <aside class="section-card intake-card" aria-label="Research objective intake">
+            <p class="section-label">Objective Intake</p>
+            <h2>Configure the research brief</h2>
+            <form id="objective-form" class="intake-form">
+              <label class="field-group" for="objective-input">
+                <span>Research objective</span>
+                <textarea id="objective-input" name="objective" rows="6">Evaluate the best launch channels for a niche SaaS product targeting small operations teams.</textarea>
+              </label>
+
+              <div class="form-grid">
+                <label class="field-group" for="scope-input">
+                  <span>Scope</span>
+                  <select id="scope-input" name="scope">
+                    <option value="narrow">Narrow</option>
+                    <option value="standard" selected>Standard</option>
+                    <option value="broad">Broad</option>
+                  </select>
+                </label>
+
+                <label class="field-group" for="format-input">
+                  <span>Output format</span>
+                  <select id="format-input" name="format">
+                    <option value="brief" selected>Brief</option>
+                    <option value="decision memo">Decision memo</option>
+                    <option value="comparison summary">Comparison summary</option>
+                  </select>
+                </label>
+              </div>
+
+              <fieldset class="toggle-group">
+                <legend>Include in final output</legend>
+                <label><input id="risks-toggle" type="checkbox" checked /> Risks</label>
+                <label><input id="questions-toggle" type="checkbox" checked /> Open questions</label>
+                <label><input id="notes-toggle" type="checkbox" checked /> Source notes</label>
+              </fieldset>
+            </form>
           </aside>
         </div>
       </section>
 
-      <section id="about" class="section">
+      <section id="workflow" class="section">
         <div class="container section-card">
-          <p class="section-label">About</p>
-          <h2>Designing with clarity and usability in mind.</h2>
-          <p>
-            This sample portfolio highlights a simple one-page structure that introduces skills,
-            selected work, and a clear way to connect. Replace this placeholder copy with your real
-            background, tools, and experience.
-          </p>
+          <div class="section-heading">
+            <div>
+              <p class="section-label">Workflow</p>
+              <h2>Visible step-by-step research orchestration</h2>
+            </div>
+            <p class="section-intro">
+              Each stage below updates during the simulated run so the research process stays readable and auditable.
+            </p>
+          </div>
+          <div id="workflow-steps" class="workflow-grid" aria-live="polite"></div>
         </div>
       </section>
 
-      <section id="projects" class="section">
-        <div class="container">
-          <p class="section-label">Projects</p>
-          <h2>Selected Work</h2>
-          <div class="projects-grid">
-            <article class="project-card">
-              <h3>Project One</h3>
-              <p>
-                A sample landing page project focused on a fast load time, clear messaging, and a
-                polished responsive layout.
-              </p>
-              <span>HTML, CSS, JavaScript</span>
-            </article>
-            <article class="project-card">
-              <h3>Project Two</h3>
-              <p>
-                A lightweight dashboard concept with reusable components, clean spacing, and
-                a modern visual hierarchy.
-              </p>
-              <span>Design Systems, CSS Grid</span>
-            </article>
-            <article class="project-card">
-              <h3>Project Three</h3>
-              <p>
-                A content-first marketing page template crafted to present services and
-                conversion-focused copy clearly.
-              </p>
-              <span>Copywriting, Layout, Accessibility</span>
-            </article>
+      <section id="findings" class="section">
+        <div class="container findings-layout">
+          <div class="findings-column section-card">
+            <div class="section-heading compact">
+              <div>
+                <p class="section-label">Findings</p>
+                <h2>Key findings</h2>
+              </div>
+              <span id="scenario-title" class="tag neutral">Scenario not started</span>
+            </div>
+            <div id="findings-list" class="stack-list" aria-live="polite"></div>
+          </div>
+
+          <div class="supporting-column">
+            <div class="section-card panel-card">
+              <div class="section-heading compact">
+                <div>
+                  <p class="section-label">Sources</p>
+                  <h2>Collected evidence base</h2>
+                </div>
+                <span id="source-count" class="meta-chip">0 sources</span>
+              </div>
+              <div id="sources-list" class="stack-list" aria-live="polite"></div>
+            </div>
+
+            <div class="section-card panel-card">
+              <div class="section-heading compact">
+                <div>
+                  <p class="section-label">Evidence</p>
+                  <h2>Evidence notes</h2>
+                </div>
+                <span id="evidence-count" class="meta-chip">0 notes</span>
+              </div>
+              <div id="evidence-list" class="stack-list" aria-live="polite"></div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="contact" class="section">
-        <div class="container section-card contact-card">
-          <p class="section-label">Contact</p>
-          <h2>Let's build something useful.</h2>
-          <p>
-            This section is placehulder text. Add your preferred email, social links, or contact
-            form to make it easy for people to reach out.
-          </p>
-          <a class="secondary-link" href="mailto:hello@example.com">helo@example.com</a>
+      <section id="report" class="section">
+        <div class="container section-card report-card">
+          <div class="section-heading">
+            <div>
+              <p class="section-label">Report</p>
+              <h2>Final research brief</h2>
+            </div>
+            <div class="report-meta">
+              <span id="report-confidence" class="tag neutral">Confidence pending</span>
+              <span id="report-timestamp" class="meta-chip">No completed run yet</span>
+            </div>
+          </div>
+
+          <div class="report-grid">
+            <article class="report-panel">
+              <h3>Executive summary</h3>
+              <p id="report-summary" class="report-text">
+                Run the demo to generate a structured summary grounded in mock findings and source notes.
+              </p>
+            </article>
+
+            <article class="report-panel">
+              <h3>Research plan</h3>
+              <div id="plan-list" class="bullet-list muted-list"></div>
+            </article>
+
+            <article class="report-panel">
+              <h3>Recommendations</h3>
+              <div id="report-recommendations" class="bullet-list muted-list"></div>
+            </article>
+
+            <article class="report-panel">
+              <h3>Open questions</h3>
+              <div id="report-gaps" class="bullet-list muted-list"></div>
+            </article>
+
+            <article class="report-panel full-width">
+              <h3>Risk notes and source notes</h3>
+              <div class="two-column-lists">
+                <div>
+                  <h4>Risks</h4>
+                  <div id="report-risks" class="bullet-list muted-list"></div>
+                </div>
+                <div>
+                  <h4>Source notes</h4>
+                  <div id="report-source-notes" class="bullet-list muted-list"></div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="hero-actions report-actions">
+            <button id="copy-summary-button" type="button">Copy Summary</button>
+            <button id="load-scenario-button" type="button" class="secondary-button">Load Another Scenario</button>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="container">
-        <p>&copy; <span id="year"></span> Sendy Ardiansyah SH MBA. All rights reserved.</p>
+      <div class="container footer-row">
+        <p>Static MVP for a transparent browser-run Autonomous Research Framework.</p>
+        <p>&copy; <span id="year"></span> Autonomous Research Framework</p>
       </div>
     </footer>
 
